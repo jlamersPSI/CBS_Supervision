@@ -23,7 +23,7 @@ def in_dictlist(key, value, my_dictlist):
         dict: The dictionary entry that matches the key-value pair, or an empty dictionary if not found.
     """
     # Iterate through the list with a progress bar
-    for entry in tqdm(my_dictlist):
+    for entry in my_dictlist:
         if entry[key] == value:  # Return the matching dictionary
             return entry
     return {}  # Return an empty dictionary if no match is found
