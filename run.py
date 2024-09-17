@@ -1,24 +1,18 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import json
+import os
+
 from matplotlib.backends.backend_pdf import PdfPages
 from datetime import datetime
 from dhis2 import Api
 from get_credentials import get_credentials
+from in_dictlist import in_dictlist, find_index_by_value
+from get_CBS_data import merge_CBS_HF04_org_hierarchy
 from io import StringIO
 
-import json
-
-text = """
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque congue non nisi sed pellentesque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce luctus lacus sed lorem tempor blandit. Cras placerat ipsum non libero consectetur sodales. Vestibulum mollis porta sapien in maximus. Nunc id sem ut justo imperdiet tempus quis ac urna. Integer pretium lorem turpis, eget sodales mi placerat vel. Aliquam ultricies ultricies tellus at tincidunt. Sed pharetra scelerisque risus sit amet pharetra. Ut urna velit, molestie id tellus a, pretium venenatis eros. Vestibulum aliquam, elit sit amet porta imperdiet, nulla nibh bibendum lectus, et luctus quam lacus mollis lectus. Ut luctus ac odio sed sagittis. Proin eros dui, euismod a faucibus in, egestas feugiat tortor. Nunc laoreet justo nunc, vel convallis libero tristique nec. Duis rutrum pulvinar ultrices.
-"""
-
-def find(lst, key, value):
-    for i, dic in enumerate(lst):
-        if dic[key] == value:
-            return i
-    return -1
-
+#@TODO add check for the time since the data downloaded last should be less than 7 days
 
 # Step 1: Get credentials (username and password) to authenticate the API connection
 username, password = get_credentials()
@@ -26,11 +20,15 @@ username, password = get_credentials()
 # Step 2: Initialize the API connection to DHIS2 using the given credentials
 api = Api('https://sl.dhis2.org/hmis23', username, password)
 
+if not os.path.exists('./Data/combined_CBS_data.csv'):
+    merge_CBS_HF04_org_hierarchy(api)
+
+#@TODO add check this json
 # Open and read the JSON file
-with open('org_units.json', 'r') as file:
+with open('Data/org_units.json', 'r') as file:
     data = json.load(file)
 
-CBS_data = pd.read_csv('merged.csv')
+CBS_data = pd.read_csv('./Data/combined_CBS_data.csv')
 
 # Ask the user to type in a CHC name
 chc_name = input("Please enter the name of the Community Health Center (CHC): ")
@@ -38,7 +36,7 @@ chc_name = input("Please enter the name of the Community Health Center (CHC): ")
 # Store the result
 print(f"CHC name '{chc_name}' has been stored.")
 
-ID_for_chc = data["organisationUnits"][find(data["organisationUnits"],"displayName",chc_name)]["id"]
+ID_for_chc = data["organisationUnits"][find_index_by_value(data["organisationUnits"],"displayName",chc_name)]["id"]
 
 period = 'LAST_12_MONTHS'  # Define the time period as the last month
 data_element = 'nufVxEfy3Ps.REPORTING_RATE'
@@ -78,6 +76,10 @@ filtered_df = filtered_df.sort_values(by='Data Quality Score',ascending=False)
 filtered_df['CHW'] = filtered_df['CHW'].str.split(' - ').str[-1]
 filtered_df.columns = filtered_df.columns.str.split('.').str[-1]
 filtered_df.columns = filtered_df.columns.str.replace('_', '\n')
+
+text = """
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque congue non nisi sed pellentesque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce luctus lacus sed lorem tempor blandit. Cras placerat ipsum non libero consectetur sodales. Vestibulum mollis porta sapien in maximus. Nunc id sem ut justo imperdiet tempus quis ac urna. Integer pretium lorem turpis, eget sodales mi placerat vel. Aliquam ultricies ultricies tellus at tincidunt. Sed pharetra scelerisque risus sit amet pharetra. Ut urna velit, molestie id tellus a, pretium venenatis eros. Vestibulum aliquam, elit sit amet porta imperdiet, nulla nibh bibendum lectus, et luctus quam lacus mollis lectus. Ut luctus ac odio sed sagittis. Proin eros dui, euismod a faucibus in, egestas feugiat tortor. Nunc laoreet justo nunc, vel convallis libero tristique nec. Duis rutrum pulvinar ultrices.
+"""
 
 # Open PdfPages
 with PdfPages('Output_test.pdf') as pdf:
@@ -144,3 +146,4 @@ with PdfPages('Output_test.pdf') as pdf:
 
 # Confirm the file has been saved
 print(f"PDF file created and saved as Output_test.pdf")
+

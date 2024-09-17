@@ -1,7 +1,7 @@
 import pandas as pd
 
-CBS_data = pd.read_csv('CBS_data.csv')
-HF04_data = pd.read_csv('res.csv')
+CBS_data = pd.read_csv('../Data/CBS_data.csv')
+HF04_data = pd.read_csv('Data/res.csv')
 
 org_lvl = [
     'Organisation unit',

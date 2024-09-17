@@ -18,7 +18,7 @@ def fetch_and_save_org_units(api):
     org_units = api.get_paged('organisationUnits', page_size=100, merge=True)
 
     # Save the fetched organization units to a JSON file
-    with open('org_units.json', 'w', encoding='utf-8') as f:
+    with open('Data/org_units.json', 'w', encoding='utf-8') as f:
         json.dump(org_units, f, ensure_ascii=False, indent=4)
 
 # Example usage (uncomment the line below to use):
