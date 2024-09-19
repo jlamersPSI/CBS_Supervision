@@ -6,7 +6,86 @@ import bs4
 import re
 from urllib.request import urlopen
 from PyPDF2 import PdfMerger
+from datetime import datetime
+from io import StringIO
+import pandas as pd
 
+def get_backlog_data(
+        api,
+        chw_code
+):
+    period = 'LAST_12_MONTHS'  # Define the time period as the last month
+
+    # Step 4: Build the query string for DHIS2 analytics API to retrieve the required data
+    query_string = (
+        f'analytics.csv?dimension=pe:{period}'  # Add period dimension
+        f'&dimension=dx:nufVxEfy3Ps.ACTUAL_REPORTS'  # Add data element group dimension
+        f'&dimension=ou:{chw_code};'  # Add organizational unit dimension
+    )
+
+    # Step 5: Fetch the data from DHIS2 API using the constructed query string
+    response = api.get(query_string)
+
+    # Step 6: Load the API response into a pandas DataFrame
+    # The response text is assumed to be in CSV format, so we use StringIO to treat it as a file-like object
+    df = pd.read_csv(StringIO(response.text))
+
+    df.index = [datetime.strptime(str(value), '%Y%m') for value in df["Period"]]
+
+    df = df.sort_index()
+
+    df = df["Value"]
+
+    return df
+
+def insert_backlog_table(
+        api,
+        chw_code,
+        html
+):
+    backlog_data = get_backlog_data(api,chw_code)
+
+    backlog_table = '''
+    <table class="chw-info-table">
+        <th colspan="12">CBS Data Backlog</th>
+        <tr id = "row 1">
+        </tr>
+        <tr id = "row 2">
+        </tr>
+    </table>
+    '''
+
+    backlog_table = backlog_table.replace(
+        f'<tr id = "row 1">',
+        f'<tr id="row 1">' + ''.join(f'\n\t\t<td>{value.strftime('%B %Y')}</td>' for value in backlog_data.index)
+    )
+
+    for value in backlog_data:
+        if value == 0:
+            backlog_table = backlog_table.replace(
+                f'<tr id = "row 2">',
+                f'<tr id = "row 2">' + ''.join(f'\n\t\t<td style="background-color: red;">{value}</td>')
+            )
+        elif value == 1:
+            backlog_table = backlog_table.replace(
+                f'<tr id = "row 2">',
+                f'<tr id = "row 2">' + ''.join(f'\n\t\t<td style="background-color: green;">{value}</td>')
+            )
+        else:
+            print(f'Value should be 1 or 0 but was {value}')
+
+    soup = bs4.BeautifulSoup(html, 'html.parser')
+
+    # Find the last table element
+    last_table = soup.find_all('table')[-1]
+
+    # Create a new BeautifulSoup object for the backlog table
+    new_table_soup = bs4.BeautifulSoup(backlog_table, 'html.parser')
+
+    # Insert the new table before the last table
+    last_table.insert_before(new_table_soup)
+
+    return str(soup)
 
 def insert_indicators(row):
     """
@@ -71,7 +150,7 @@ def edit_html(string, new_text, id_to_find, element_type):
     return str(soup)
 
 
-def gen_pdf(data, chc_name):
+def gen_pdf(api, data, chc_name):
     """
     Generate individual PDFs for each CHW and merge them into a single report.
 
@@ -86,6 +165,7 @@ def gen_pdf(data, chc_name):
     # Generate individual PDFs for each CHW
     for index, row in data.iterrows():
         html = insert_indicators(row)
+        html = insert_backlog_table(api, row["Organisation unit"],html)
         pdfkit.from_string(html, f'./Output/{row["CHW"]}.pdf', configuration=config)
 
     # Merge individual PDFs into a single report

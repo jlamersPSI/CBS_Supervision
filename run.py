@@ -202,6 +202,7 @@ with PdfPages('./Output/A_Front_page.pdf') as pdf:
     pdf.savefig(fig)
 
 gen_pdf(
+    api,
     filtered_df,
     chc_name
 )

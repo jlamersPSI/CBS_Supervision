@@ -1,10 +1,517 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
+            <meta charset="utf-8">
+            <link type="text/css" rel="stylesheet" media="screen" href="https://sl.dhis2.org/hmis23/dhis-web-commons/javascripts/jQuery/ui/css/redmond/jquery-ui.css">
+<link type="text/css" rel="stylesheet" media="print" href="https://sl.dhis2.org/hmis23/dhis-web-commons/css/print.css">
+<link type="text/css" rel="stylesheet" media="screen,print" href="https://sl.dhis2.org/hmis23/dhis-web-commons/css/themes/light_blue/light_blue.css">
+            <script src="https://sl.dhis2.org/hmis23/dhis-web-commons/javascripts/jQuery/jquery.min.js" type="text/javascript"></script>
+<script src="https://sl.dhis2.org/hmis23/dhis-web-commons/javascripts/jQuery/jquery.utils.js" type="text/javascript"></script>
+<script src="https://sl.dhis2.org/hmis23/dhis-web-commons/javascripts/jQuery/ui/jquery-ui.min.js" type="text/javascript"></script>
+<script src="https://sl.dhis2.org/hmis23/dhis-web-commons/javascripts/dhis2/dhis2.util.js" type="text/javascript"></script>
+<script src="https://sl.dhis2.org/hmis23/dhis-web-commons/javascripts/dhis2/dhis2.period.js" type="text/javascript"></script>
+<script src="https://sl.dhis2.org/hmis23/dhis-web-commons/javascripts/commons.js" type="text/javascript"></script>
+<script src="https://sl.dhis2.org/hmis23/dhis-web-commons/javascripts/commons.ajax.js" type="text/javascript"></script>
+<script src="https://sl.dhis2.org/hmis23/dhis-web-commons/javascripts/lists.js" type="text/javascript"></script>
+<script src="https://sl.dhis2.org/hmis23/dhis-web-commons/javascripts/periodType.js" type="text/javascript"></script>
+<script src="https://sl.dhis2.org/hmis23/dhis-web-commons/javascripts/date.js" type="text/javascript"></script>
+<script src="https://sl.dhis2.org/hmis23/dhis-web-commons/oust/oust.js" type="text/javascript"></script>
+            <style type="text/css">
+
+    html {
+        line-height: 1.15;
+        text-size-adjust: 100%;
+    }
+    body {
+        font-family: Roboto, sans-serif;
+        box-sizing: inherit;
+    }
+    table {
+        margin-top: 16px;
+        border-collapse: collapse;
+    }
+    table td,
+    table th {
+        border: 1px solid #bcbcbc;
+        padding: 4px;
+    }
+
+            </style>
+        </head>
+        <body>
+            <style type="text/css">.TFtable{
+		width:100%;
+		border-collapse:collapse;
+	}
+	.TFtable td{
+		padding:7px; border:#4e95f4 1px solid;
+	}
+	/* provide some minimal visual accomodation for IE8 and below */
+	.TFtable tr{
+		background: #b8d1f3;
+	}
+	/*  Define the background color for all the ODD background rows  */
+	.TFtable tr:nth-child(odd){
+		background: #b8d1f3;
+	}
+	/*  Define the background color for all the EVEN background rows  */
+	.TFtable tr:nth-child(even){
+		background: #dae5f4;
+	}
+.TFtable tr:hover{
+		background: #ffff99;
+	}
+</style>
+<table border="0" cellspacing="0" class="TFtable" cols="20" frame="VOID" rules="NONE">
+	<colgroup>
+		<col width="299">
+		<col width="109">
+		<col width="86">
+		<col width="86">
+		<col width="86">
+		<col width="86">
+		<col width="86">
+		<col width="86">
+		<col width="86">
+		<col width="86">
+		<col width="86">
+		<col width="86">
+		<col width="86">
+		<col width="86">
+	</colgroup>
+	<tbody>
+		<tr>
+			<th align="CENTER" colspan="20" height="40" width="1436">
+			<p><img src="../dhis-web-commons/flags/sierra_leone.png" style="float: left; height: 80px; width: 100px;"></p>
+
+			<p><span style="font-size:16px;"><strong><span style="font-family:lucida sans unicode,lucida grande,sans-serif;"><font color="#000000">MINISTRY OF HEALTH</font></span></strong></span></p>
+
+			<p><strong><span style="font-family:lucida sans unicode,lucida grande,sans-serif;"><span style="font-size:22px;"><span style="color: rgb(0, 0, 0); line-height: 51.2px; text-align: center; background-color: rgb(230, 230, 250);"><span style="font-size:16px;">Monthly Summary Community Based Services - HF04 (CHWs, 2023 version)</span></span></span></span></strong></p>
+			</th>
+		</tr>
+	</tbody>
+</table>
+
+<table border="0" cellspacing="0" class="TFtable" cols="62" frame="VOID" rules="NONE">
+	<colgroup>
+		<col width="86">
+		<col width="299">
+		<col width="109">
+		<col width="86">
+		<col width="86">
+		<col width="86">
+		<col width="86">
+		<col width="86">
+		<col width="86">
+		<col width="86">
+		<col width="86">
+		<col width="86">
+		<col width="86">
+		<col width="86">
+		<col width="86">
+		<col width="86">
+	</colgroup>
+	<tbody>
+		<tr>
+			<th colspan="5" rowspan="1" style="border-width: 3px; border-style: solid; border-color: rgb(0, 0, 0); text-align: center; background-color: rgb(169, 169, 169);"><span style="font-size:14px"><b><font color="#000000"><font face="Arial1">CHW/PS name/code</font></font></b></span></th>
+			<td colspan="2" rowspan="1" style="border-width: 3px; border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="WERoyY4ii2D" data-co="HllvX50cXC0">Marion Konneh</span></td>
+			<th rowspan="1" style="border-width: 3px; border-style: solid; border-color: rgb(0, 0, 0); text-align: center;">&nbsp;</th>
+			<th rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center; background-color: rgb(169, 169, 169);"><span style="font-size:14px"><b><font color="#000000"><font face="Arial1">PHU staff full name</font></font></b></span></th>
+			<td colspan="6" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="YslDuMvSE2P" data-co="HllvX50cXC0">Modu T Mansary</span></td>
+			<th colspan="2" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center; background-color: rgb(169, 169, 169);"><span style="font-size:14px"><b><font color="#000000"><font face="Arial1">Date form completed</font></font></b></span></th>
+			<td colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="lBYF7dshoF3" data-co="HllvX50cXC0"></span></td>
+			<th colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;">&nbsp;</th>
+		</tr>
+		<tr>
+			<th colspan="8" style="border-width: 3px; border-style: solid; border-color: rgb(0, 0, 0); text-align: center;">&nbsp;</th>
+			<th colspan="17" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;">&nbsp;</th>
+		</tr>
+		<tr>
+			<th bgcolor="#A9A9A9" colspan="8" rowspan="1" style="border-width: 3px; border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><b><font color="#000000" size="4">Community morbidity cases </font></b></th>
+			<th colspan="17" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center; background-color: rgb(169, 169, 169);"><b><font color="#000000"><font size="4">Community Health Workers</font></font></b></th>
+		</tr>
+		<tr>
+			<th bgcolor="#A9A9A9" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0); border-bottom-width: 3px; text-align: center;"><span style="font-size:14px;"><b><font color="#000000" face="Arial1">Disease \ Age group </font></b></span></th>
+			<th bgcolor="#A9A9A9" style="border-style: solid; border-color: rgb(0, 0, 0); border-bottom-width: 3px;"><span style="font-size:14px;"><b><font color="#000000" face="Arial1">2-59 m</font></b></span></th>
+			<th bgcolor="#A9A9A9" style="border-style: solid; border-color: rgb(0, 0, 0); border-bottom-width: 3px;"><span style="font-size:14px;"><b><font color="#000000" face="Arial1">5-14 yrs</font></b></span></th>
+			<th bgcolor="#A9A9A9" style="border-style: solid; border-color: rgb(0, 0, 0); border-bottom-width: 3px;"><span style="font-size:14px;"><b><font color="#000000" face="Arial1">15+ years</font></b></span></th>
+			<th bgcolor="#A9A9A9" style="border-width: 3px; border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span style="font-size:14px;"><b><font color="#000000"><font face="Arial1">Referred</font></font></b></span></th>
+			<th style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center; background-color: rgb(169, 169, 169);"><span style="font-size:14px;"><b><font color="#000000"><font face="Arial1">Routine HH Visits</font></font></b></span></th>
+			<th style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center; background-color: rgb(169, 169, 169);"><span style="font-size:14px;"><b><font color="#000000"><font face="Arial1">Total</font></font></b></span></th>
+			<th bgcolor="#A9A9A9" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0); border-bottom-width: 3px; text-align: center;"><span style="font-size:14px;"><b><font color="#000000" face="Arial1">ANC&nbsp; Home Visits</font></b></span></th>
+			<th bgcolor="#A9A9A9" colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); border-bottom-width: 3px; text-align: center;"><span style="font-size:14px;"><b><font color="#000000" face="Arial1">Total</font></b></span></th>
+			<th bgcolor="#A9A9A9" colspan="9" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0); border-bottom-width: 3px; text-align: center;"><span style="font-size:14px;"><b><font color="#000000" face="Arial1">Essential Commodities for CBS</font></b></span></th>
+		</tr>
+		<tr>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><span style="font-size:14px;"><font color="#000000" face="Arial1">Fever case (suspected malaria) in HTR &amp; ETR</font></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="wfaQBIVQxWo" data-co="NtjMVmRfvHH">3</span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="wfaQBIVQxWo" data-co="qDXW7WMLT99">1</span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="wfaQBIVQxWo" data-co="mdjRPpvLKdu"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="VjclbawdmUM" data-co="HllvX50cXC0">4</span></td>
+			<td align="LEFT" style="border-style: solid; border-color: rgb(0, 0, 0);"><span style="font-size:14px;">Total HH in CHW area</span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="P7Z5QKNkhE6" data-co="HllvX50cXC0">600</span></td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">ANC 1st promo visit</font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="hfej6DuoFGQ" data-co="HllvX50cXC0"></span></td>
+			<th colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0); background-color: rgb(169, 169, 169); text-align: center;"><span style="font-size:14px"><b><font color="#000000"><font face="Arial1">Commodity Type</font></font></b></span></th>
+			<th colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); background-color: rgb(169, 169, 169); text-align: center;"><span style="font-size:14px"><b><font color="#000000"><font face="Arial1">Stock at start mm</font></font></b></span></th>
+			<th style="border-style: solid; border-color: rgb(0, 0, 0); background-color: rgb(169, 169, 169); text-align: center;"><span style="font-size:14px"><b><font color="#000000"><font face="Arial1">Stock received mm</font></font></b></span></th>
+			<th style="border-style: solid; border-color: rgb(0, 0, 0); background-color: rgb(169, 169, 169); text-align: center;"><span style="font-size:14px"><b><font color="#000000"><font face="Arial1">Stock used mm</font></font></b></span></th>
+			<th style="border-style: solid; border-color: rgb(0, 0, 0); background-color: rgb(169, 169, 169); text-align: center;"><span style="font-size:14px"><b><font color="#000000"><font face="Arial1">Stock at end mm</font></font></b></span></th>
+		</tr>
+		<tr>
+			<td align="LEFT" colspan="3" rowspan="2" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">Fever case tested for malaria (RDT) in HTR</font></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">Positive</font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="T7xH8GwWpEM" data-co="NtjMVmRfvHH"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="T7xH8GwWpEM" data-co="qDXW7WMLT99"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="T7xH8GwWpEM" data-co="mdjRPpvLKdu"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="UzXqiK0WeeT" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" style="border-style: solid; border-color: rgb(0, 0, 0);"><span style="font-size:14px;">HH routine visit in CHW area</span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="ItM3HKsocyV" data-co="HllvX50cXC0">300</span></td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">ANC </font></font></font><font color="#000000" face="Arial1" size="3"> 2nd promo visit</font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="mtnK3ZHZglt" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">Malaria RDT</font></td>
+			<td align="CENTER" colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0);"><span class="val" data-de="i8Q44C6naaq" data-co="HllvX50cXC0"></span></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><span class="val" data-de="tOGHoM39Bla" data-co="HllvX50cXC0"></span></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><span class="val" data-de="GGBDo4YrLBB" data-co="HllvX50cXC0"></span></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><span class="val" data-de="oSK84vPzKS1" data-co="HllvX50cXC0"></span></td>
+		</tr>
+		<tr>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">Negative</font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="YWvx4zYdp92" data-co="NtjMVmRfvHH"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="YWvx4zYdp92" data-co="qDXW7WMLT99"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="YWvx4zYdp92" data-co="mdjRPpvLKdu"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="FLA2Itv38Xf" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="2" rowspan="3" style="border-style: solid; border-color: rgb(0, 0, 0); background-color: rgb(191, 201, 202);">&nbsp;</td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">ANC </font></font></font><font color="#000000" face="Arial1" size="3"> 3rd promo visit</font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="VHZkeqRvyQQ" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">AL6</font></td>
+			<td align="CENTER" colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0);"><span class="val" data-de="eb8O4TDWx4V" data-co="HllvX50cXC0"></span></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><span class="val" data-de="PnLyEsyeVBb" data-co="HllvX50cXC0"></span></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><span class="val" data-de="W8SRdWAq6bS" data-co="HllvX50cXC0"></span></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><span class="val" data-de="SL1zFRrotjW" data-co="HllvX50cXC0"></span></td>
+		</tr>
+		<tr>
+			<td align="LEFT" colspan="3" rowspan="2" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">Malaria treated with ACT in HTR</font></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">&lt; 24hrs</font></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><span class="val" data-de="h3zJa6hAgib" data-co="NtjMVmRfvHH"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="h3zJa6hAgib" data-co="qDXW7WMLT99"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="h3zJa6hAgib" data-co="mdjRPpvLKdu"></span></td>
+			<td colspan="1" rowspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle; text-align: center;"><span class="val" data-de="pfHy9QbtP7c" data-co="HllvX50cXC0"></span><br>
+			&nbsp;</td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">ANC 4th promo visit</font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="fVJP0nhWdcV" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">AL12</font></td>
+			<td align="CENTER" colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0);"><span class="val" data-de="mvfH3tavlwi" data-co="HllvX50cXC0"></span></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><span class="val" data-de="KxgvC7AOt3w" data-co="HllvX50cXC0"></span></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><span class="val" data-de="OEeo04u4tTg" data-co="HllvX50cXC0"></span></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><span class="val" data-de="wYPXCaFvg0e" data-co="HllvX50cXC0"></span></td>
+		</tr>
+		<tr>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">&gt; 24hrs</font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="Imkks0HAl7E" data-co="NtjMVmRfvHH"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="Imkks0HAl7E" data-co="qDXW7WMLT99"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="Imkks0HAl7E" data-co="mdjRPpvLKdu"></span></td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">ANC 5th promo visit</font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="vmIxDGcdLyQ" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">AL18</font></td>
+			<td align="CENTER" colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0);"><span class="val" data-de="nut0DV3JE4K" data-co="HllvX50cXC0"></span></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><span class="val" data-de="I5YtOWhYoe1" data-co="HllvX50cXC0"></span></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><span class="val" data-de="wzbVuaOW2ws" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="ipQwAbIEtBq" data-co="HllvX50cXC0"></span></td>
+		</tr>
+		<tr>
+			<td align="LEFT" colspan="4" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0);"><span style="font-size:14px"><b><font color="#000000"><font face="Arial1">Community morbidity cases</font></font></b></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span style="font-size:14px"><b><font color="#000000"><font face="Arial1">Total</font></font></b></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span style="font-size:14px"><b><font color="#000000"><font face="Arial1">Referred</font></font></b></span></td>
+			<td colspan="3" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><strong><span style="font-size:14px;">Inclusion of MNCH/EPI for CHWs</span></strong></td>
+			<td rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span style="font-size:14px"><b><font color="#000000"><font face="Arial1">Total</font></font></b></span></td>
+			<td colspan="4" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: left; vertical-align: middle;"><font color="#000000"><font face="Arial1"><font size="3">ANC 6th promo visit</font></font></font></td>
+			<td colspan="2" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle; text-align: center;"><span class="val" data-de="vnXFk9zCG29" data-co="HllvX50cXC0"></span></td>
+			<td colspan="4" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">AL24</font></font></font></td>
+			<td align="CENTER" colspan="2" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0);"><span class="val" data-de="TVeTuuvDPTq" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="WEGbFBtdAAP" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="WObmh7zUljg" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="sFTwx8yMYbw" data-co="HllvX50cXC0"></span></td>
+		</tr>
+		<tr>
+			<td align="LEFT" colspan="3" rowspan="2" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">Child with diarrhoea treated with ORS and Zinc in HTR</font></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">&lt; 24hrs</font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="uHF1c1v6dpB" data-co="HllvX50cXC0"></span></td>
+			<td colspan="1" rowspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="GqTCwwQAFbv" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="3" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Defaulter identified and linked to CHW</font></font></font></td>
+			<td rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="QLJ5mkZMWgn" data-co="HllvX50cXC0">1</span></td>
+			<td colspan="4" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: left; vertical-align: middle;"><font color="#000000" face="Arial1" size="3">ANC client referred</font></td>
+			<td colspan="2" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0); vertical-align: middle; text-align: center;"><span class="val" data-de="kgDZFF391KK" data-co="HllvX50cXC0"></span></td>
+			<td colspan="4" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Zinc 20mg tabs</font></font></font></td>
+			<td align="CENTER" colspan="2" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0);"><span class="val" data-de="cPPjFSctdgi" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="m1SCi5P3uEr" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="sfhIXDahz9C" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="m8ZeEUu6Jg9" data-co="HllvX50cXC0"></span></td>
+		</tr>
+		<tr>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">&gt; 24hrs</font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="ey5PVOhQUsR" data-co="HllvX50cXC0"></span></td>
+			<td colspan="3" style="border-style: solid; border-color: rgb(0, 0, 0); border-bottom-width: 3px;"><font color="#000000"><font face="Arial1"><font size="3">PHU list of child defaulters given go CHW/PS</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); border-bottom-width: 3px; text-align: center;"><span class="val" data-de="nu7hl4pJKPN" data-co="HllvX50cXC0">2</span></td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0); border-left-width: 3px;">Mother delivered in facility</td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="vhD9JIWzuct" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">ORS 1 litre sachet</font></td>
+			<td align="CENTER" colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0);"><span class="val" data-de="qjkcBTBewno" data-co="HllvX50cXC0"></span></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><span class="val" data-de="brWoGmf3s3Y" data-co="HllvX50cXC0"></span></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><span class="val" data-de="ObuBla8BUEN" data-co="HllvX50cXC0"></span></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><span class="val" data-de="If1kgV52Dpj" data-co="HllvX50cXC0"></span></td>
+		</tr>
+		<tr>
+			<td align="LEFT" colspan="3" rowspan="2" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Child with diarrhoea treated with ORS</font></font></font><font color="#000000" face="Arial1" size="3"> only in HTR</font></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">&lt; 24hrs</font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="hRQl0k6LvDe" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="1" rowspan="2" style="border-style: solid; border-color: rgb(0, 0, 0);"><span class="val" data-de="GvoyKvStNpf" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="3" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">Child 0-15 months defaulter on scheduled EPI</font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="LxiH7YXL5Uz" data-co="HllvX50cXC0">1</span></td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">ANC IPTp 1st dose in Community</font></font></font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="TSIydcaSESN" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">Amoxicillin dispersable 250mg tabs</font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="ASbS66OphtN" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="qId0nk0elm4" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="ksCiewTcHMu" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="sSCRejS7FBF" data-co="HllvX50cXC0"></span></td>
+		</tr>
+		<tr>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">&gt; 24hrs</font></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><span class="val" data-de="cPpsm42aCur" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="3" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Child 0-15 months defaulter traced by CHW/PS</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="wkOAE3lSjf0" data-co="HllvX50cXC0">1</span></td>
+			<td align="LEFT" colspan="4" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">ANC IPTp 2nd dose in Community</font></font></font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="UNNPnnylzkn" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">Sulfadoxine Pyrimethamine</font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="QyCyDUaPapm" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="pnJ2vLePWCg" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="HQ2qKe3rOEe" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="GxR3Oy7YCci" data-co="HllvX50cXC0"></span></td>
+		</tr>
+		<tr>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">Child with bloody diarrhoea in HTR / ETR</font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="aSAX0U4CfXN" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="waoVeeqTD5g" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="3" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Child 0-15 months defaulter traced &amp; referred by CHW/PS</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="bkbyIKOcBKT" data-co="HllvX50cXC0">1</span></td>
+			<td colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0); border-bottom-width: 3px;"><font color="#000000"><font face="Arial1"><font size="3">ANC IPTp 3rd dose in Community</font></font></font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); border-bottom-width: 3px; text-align: center;"><span class="val" data-de="lgJWqTfY0Oq" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">Oral contraceptive pills</font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="AM4j5Cv3prg" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="eWSQKa81C2d" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="OFAdV4oYPmg" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="gn6sdXZC6vq" data-co="HllvX50cXC0"></span></td>
+		</tr>
+		<tr>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">Child with cough in HTR and ETR</font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="wfAo2dzodjp" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="PwxZZfYCP2S" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="3" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">HH MNCH visit with EPI counselling session</font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="qLDaR8ljWMm" data-co="HllvX50cXC0">1</span></td>
+			<th colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0); background-color: rgb(169, 169, 169); text-align: center;"><span style="font-size:14px"><b><font color="#000000"><font face="Arial1">Community Surveillance</font></font></b></span></th>
+			<th colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); background-color: rgb(169, 169, 169); text-align: center;"><span style="font-size:14px"><b><font color="#000000"><font face="Arial1">Total</font></font></b></span></th>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">Male condoms</font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="wIifN5kfl7x" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="rkxrY8tgmUp" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="BJSSUlHRCyg" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="TIjfe8M3F55" data-co="HllvX50cXC0"></span></td>
+		</tr>
+		<tr>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Child with pneumonia in HTR and ETR</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="HRAiktMFJWD" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="ChinNCnNNzG" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="3" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">HH MNCH visit with nutrition counselling session</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="Y7ruL4GZrpO" data-co="HllvX50cXC0">1</span></td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Death in Community</font></font></font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="QC3U6uZv3jZ" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">Vitamin A 100,000IU (Red)</font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="nvGmdtjcAh0" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="zNuZiiu2fax" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="qoOaJRI8uc5" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="Wc8nTt4pKs4" data-co="HllvX50cXC0"></span></td>
+		</tr>
+		<tr>
+			<td align="LEFT" colspan="2" rowspan="2" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">Child with pneumonia treated with antiobiotics in HTR and ETR</font></td>
+			<td align="LEFT" colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">&lt; 24hrs</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="R72BbPouBh7" data-co="HllvX50cXC0"></span></td>
+			<td colspan="1" rowspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="ibkTq7R8UYB" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="3" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">Facility outreach EPI activity supported by CHW</font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="XU83opwdllH" data-co="HllvX50cXC0">1</span></td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Deaths clustered</font></font></font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="E7Chfvwe8sz" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Vitamin A 200,000IU (Blue)</font></font></font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="Xv5JnaQWNqk" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="QlcfDX2hnCi" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="FJeCSJFHacK" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="I9WNWrGq3UD" data-co="HllvX50cXC0"></span></td>
+		</tr>
+		<tr>
+			<td align="LEFT" colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">&gt; 24hrs</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="GrnvgnDBRHZ" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="3" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Facility outreach other activity supported by CHW</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="O9YWizFfX4D" data-co="HllvX50cXC0">1</span></td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Death 0-28 days</font></font></font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="U5wnTTo7dPn" data-co="HllvX50cXC0"></span></td>
+			<td colspan="9" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center; background-color: rgb(191, 201, 202);">&nbsp;</td>
+		</tr>
+		<tr>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Child with chest indrawing in HTR and ETR</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="vPElmeGQLPk" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="EcctQKkxuwi" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="4" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0);">
+			<p>&nbsp;</p>
+
+			<p style="text-align: center;">&nbsp;</p>
+			</td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Death 1-59 months</font></font></font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="PlUgLug1lJV" data-co="HllvX50cXC0"></span></td>
+			<td colspan="8" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span style="font-size:14px"><b><font color="#000000"><font face="Arial1">Young Child Visit by CHWs</font></font></b></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><strong><span style="font-size:14px;">Total</span></strong></td>
+		</tr>
+		<tr>
+			<td colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center; background-color: rgb(169, 169, 169);"><span style="font-size:14px"><b><font color="#000000"><font face="Arial1">Malaria prevention</font></font></b></span></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0); background-color: rgb(169, 169, 169);"><span style="font-size:14px"><b><font color="#000000"><font face="Arial1">Total</font></font></b></span></td>
+			<td align="LEFT" colspan="1" rowspan="13" style="border-style: solid; border-color: rgb(0, 0, 0); background-color: rgb(191, 201, 202);">&nbsp;</td>
+			<td colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0); background-color: rgb(169, 169, 169); text-align: center;"><strong><span style="font-size:14px;">Child 6-59 months Screening for Malnutrition</span></strong></td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Maternal death</font></font></font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="icmZqa0Ga9G" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="8" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0);">
+			<p>&nbsp;</p>
+			<font color="#000000"><font face="Arial1"><font size="3">Child 1 months visit (postnatal)</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="XnmqDZFP9zo" data-co="HllvX50cXC0"></span></td>
+		</tr>
+		<tr>
+			<td colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0); border-bottom-width: 3px;"><font color="#000000"><font face="Arial1"><font size="3">IRS Structures sprayed</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); border-bottom-width: 3px; text-align: center;"><span class="val" data-de="eGlSbSyaPU5" data-co="HllvX50cXC0">500</span></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span style="font-size:14px;"><strong>Malnutrition Screening</strong></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span style="font-size:14px;"><strong>Total</strong></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span style="font-size:14px;"><strong>Referred</strong></span></td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Death Ebola survivor</font></font></font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="OPHu0d7hE3I" data-co="HllvX50cXC0"></span></td>
+			<td colspan="8" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0); border-bottom-width: 3px;"><font color="#000000"><font face="Arial1"><font size="3">Child 2-59 months visit</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); border-bottom-width: 3px; text-align: center;"><span class="val" data-de="rESlg9qOw6o" data-co="HllvX50cXC0">2</span></td>
+		</tr>
+		<tr>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">IRS Community covered</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="IGsCAE2EgVK" data-co="HllvX50cXC0">2</span></td>
+			<td align="LEFT" colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">Child assessed with MUAC red</font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="RphdJvt2dwk" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="zXXb66yQM7q" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Neonatal tetanus suspected</font></font></font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="BrXcUUifN7C" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="8" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Child 9 months visit</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="gk9O9eaUiDW" data-co="HllvX50cXC0"></span></td>
+		</tr>
+		<tr>
+			<td colspan="4" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0); background-color: rgb(169, 169, 169); text-align: center;"><span style="font-size:14px;"><b><font color="#000000"><font face="Arial1">PNC Promotional Home Visit</font></font></b></span></td>
+			<td rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0); background-color: rgb(169, 169, 169); text-align: center;"><span style="font-size:14px"><b><font color="#000000"><font face="Arial1">Total</font></font></b></span></td>
+			<td align="LEFT" colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Child assessed with MUAC yellow</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="tzUJKBfm305" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="txLgg3b5L2e" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Polio suspected</font></font></font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="IeLFcjY3A8Z" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="8" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Child 15 months visit</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="utlYPTQ0pyg" data-co="HllvX50cXC0"></span></td>
+		</tr>
+		<tr>
+			<td align="LEFT" colspan="4" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Postnatal care 1st promotional visit (24-48 hrs)</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="fPqbb4Om8HA" data-co="HllvX50cXC0"></span></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); border-bottom-width: 3px;"><font color="#000000"><font face="Arial1"><font size="3">Child assessed with MUAC green</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); border-bottom-width: 3px; text-align: center;"><span class="val" data-de="xDjdyXwwciH" data-co="HllvX50cXC0">3</span></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0); border-bottom-width: 3px; background-color: rgb(191, 201, 202);">&nbsp;</td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Measles suspected</font></font></font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="cffwED0v0bI" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="8" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Child referred to facility</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="GBRGklkqib0" data-co="HllvX50cXC0"></span></td>
+		</tr>
+		<tr>
+			<td colspan="4" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0); border-bottom-width: 3px;"><font color="#000000"><font face="Arial1"><font size="3">Postnatal care 2nd promotional visit (3-5 days)</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); border-bottom-width: 3px; text-align: center;"><span class="val" data-de="KnP2AwDDbzb" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Child malnutrition follow up visit</font></font></font><font color="#000000" face="Arial1" size="3"> </font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="Wiis6z69vhE" data-co="HllvX50cXC0"></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="DAIlewvY7KF" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Cholera suspected</font></font></font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="JL0G8RBcPPj" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="8" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Child </font></font></font><font color="#000000"><font face="Arial1"><font size="3">6-11 months received Vit A RED supplement in HTR</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="sUZXQLDw7qv" data-co="HllvX50cXC0"></span></td>
+		</tr>
+		<tr>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Postnatal care 3rd promotional visit (6+ days)</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="PqP65zq3jZT" data-co="HllvX50cXC0"></span></td>
+			<td colspan="3" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span style="font-size:14px;"><strong><font color="#000000" face="Arial1">HIV/ART</font></strong></span></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><strong><span style="font-size:14px;">Total</span></strong></td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Yellow eyes with fever</font></font></font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="XK9G4GUc6yO" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="8" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Child </font></font></font><font color="#000000"><font face="Arial1"><font size="3">12-59 months received Vit A BLUE supplement in HTR</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="puakOeJKAQ3" data-co="HllvX50cXC0"></span></td>
+		</tr>
+		<tr>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Newborn referred</font></font></font></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><span class="val" data-de="PlC1bielzW2" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="3" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000" face="Arial1" size="3">ART defaulter and Lost to Follow-up traced</font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="d1u4uX0ULbp" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Delivery in community</font></font></font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="ceFlv9W0KmT" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="9" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0); background-color: rgb(191, 201, 202);">&nbsp;</td>
+		</tr>
+		<tr>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Postnatal client referred</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="LPYVz9wtgLx" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="3" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">ART defaulter and Lost to Follow-up returned to care</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="DdPyhujHLP4" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="4" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Live birth in community</font></font></font></td>
+			<td colspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); border-bottom-width: 3px; text-align: center;"><span class="val" data-de="VKD69tkbD45" data-co="HllvX50cXC0"></span></td>
+			<td align="CENTER" colspan="4" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0); border-bottom-width: 3px; background-color: rgb(191, 201, 202);">&nbsp;</td>
+			<td align="CENTER" colspan="4" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0); border-bottom-width: 3px;"><strong><font color="#000000"><font face="Arial1"><font size="3">Peer Supervisor (PS) Reporting</font></font></font></strong></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0); border-bottom-width: 3px; background-color: rgb(191, 201, 202);">&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span style="font-size:14px;"><strong>Tuberculosis (TB)</strong></span></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><span style="font-size:14px;"><strong>Total</strong></span></td>
+			<td colspan="3" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span style="font-size:14px;"><strong>Non-Communicable Diseases</strong></span></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span style="font-size:14px;"><strong>Total</strong></span></td>
+			<td align="LEFT" colspan="5" rowspan="4" style="border-style: solid; border-color: rgb(0, 0, 0); background-color: rgb(191, 201, 202);">&nbsp;</td>
+			<td colspan="5" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><strong><span style="font-size:14px;">CHW Supervision by PS</span></strong></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><strong><span style="font-size:14px;">Total</span></strong></td>
+			<td align="CENTER" colspan="1" rowspan="4" style="border-style: solid; border-color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">&nbsp;</td>
+			<td align="CENTER" colspan="2" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0);"><span style="font-size:14px;"><strong>CHW in ETR area who reported</strong></span></td>
+			<td align="CENTER" style="border-style: solid; border-color: rgb(0, 0, 0);"><strong><span style="font-size:14px;">Total</span></strong></td>
+		</tr>
+		<tr>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">TB case under treatment in CHW area</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="hqd5jJZJIT8" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="3" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Suspected defaulter NCD case referred</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="xmGaM6NwXW0" data-co="HllvX50cXC0">1</span></td>
+			<td align="LEFT" colspan="5" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">CHW supervistion visit by PS</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="sAXYZAYPYFc" data-co="HllvX50cXC0">1</span></td>
+			<td colspan="2" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">CHW in ETR area who reported</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="og08AREvc2X" data-co="HllvX50cXC0">1</span></td>
+		</tr>
+		<tr>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">TB case followed up by CHW</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="CuU4VdHgu4n" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="4" rowspan="2" style="border-style: solid; border-color: rgb(0, 0, 0); background-color: rgb(191, 201, 202);">&nbsp;</td>
+			<td align="LEFT" colspan="5" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">CHW meeting facilitated by PS</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="FNyqKGVoUzt" data-co="HllvX50cXC0">1</span></td>
+			<td colspan="2" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">CHW in HTR area who reported</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="bpZhj8EcT0m" data-co="HllvX50cXC0"></span></td>
+		</tr>
+		<tr>
+			<td align="LEFT" colspan="4" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">TB case - contact traced by CHW</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="jbc8oXdmyFO" data-co="HllvX50cXC0"></span></td>
+			<td align="LEFT" colspan="5" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">Monthly meeting report submitted by PS</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="NaRH4zgnYCX" data-co="HllvX50cXC0">1</span></td>
+			<td colspan="2" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0);"><font color="#000000"><font face="Arial1"><font size="3">CHW who permanently left the programme</font></font></font></td>
+			<td style="border-style: solid; border-color: rgb(0, 0, 0); text-align: center;"><span class="val" data-de="SWcYHS3Dsaj" data-co="HllvX50cXC0"></span></td>
+		</tr>
+		<tr>
+			<td align="LEFT" colspan="15" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0); background-color: rgb(191, 201, 202);">&nbsp;</td>
+			<td align="LEFT" colspan="10" rowspan="1" style="border-style: solid; border-color: rgb(0, 0, 0); background-color: rgb(191, 201, 202);">&nbsp;</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+
+
 </body>
-</html>
