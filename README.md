@@ -1,0 +1,13 @@
+v1 Desired Features
+- Pdf Creation
+  - Front Page
+    - Plot of Reporting Rate and On Time Reporting Rate
+    - Key indicators for CBS
+    - Data Submission and Quality Table
+  - CHW Pages
+    - CHW identifying information
+    - Monthly CBS Report
+    - Backlog information
+    - PS forms
+- Whatsapp
+  - Sending Automated
