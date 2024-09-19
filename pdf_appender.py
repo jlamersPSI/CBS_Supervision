@@ -7,8 +7,50 @@ import re
 from urllib.request import urlopen
 from PyPDF2 import PdfMerger
 
+def insert_indicators(
+        row
+):
+    html = edit_html(
+        './Form_Templates/CHW_PAGE_TEMPLATE.html',
+        row['CHW Name/Code'],
+        'Name_of_CHW',
+        'div'
+    )
+    html = edit_html(
+        html,
+        row['CHW'],
+        'CHW_ID',
+        'div'
+    )
+    html = edit_html(
+        html,
+        row["Fever case (suspected malaria) in HTR and ETR referred"],
+        "Fever_case_(suspected_malaria)_in_HTR_amp;_ETR_Referred",
+        'td'
+    )
+    html = edit_html(
+        html,
+        row["Fever case tested for Malaria (RDT) in HTR - Positive referred"],
+        "Fever_case_tested_for_malaria_(RDT)_in_HTR_Positive_Referred",
+        'td'
+    )
+    html = edit_html(
+        html,
+        row["Fever case tested for Malaria (RDT) in HTR - Negative referred"],
+        "Fever_case_tested_for_malaria_(RDT)_in_HTR_Negative_Referred",
+        'td'
+    )
+    html = edit_html(
+        html,
+        row["Malaria treated with ACT in HTR referred"],
+        "Malaria_treated_with_ACT_in_HTR_referred",
+        'td'
+    )
+
+    return html
+
 # Function to edit the HTML file
-def edit_html(string, new_text, id_to_find):
+def edit_html(string, new_text, id_to_find, element_type):
     """Edits the HTML file at the specified path, replacing the content of the element with ID 'chwname'."""
 
     # Check if the string matches the file name pattern
@@ -21,12 +63,15 @@ def edit_html(string, new_text, id_to_find):
 
 
     # Find the element with ID 'chwname'
-    chwname_element = soup.find('div', id=id_to_find)
+    chwname_element = soup.find(element_type, id=id_to_find)
 
-    # If the element is found, replace its content
     if chwname_element:
+        if chwname_element.string is None:
+            chwname_element.string = ''
+
         chwname_element.string = f"{chwname_element.string} {new_text}"
     else:
+        print(str(soup))
         print(f"Element with ID {id_to_find} not found.")
 
     # Return the edited HTML as a string
@@ -40,16 +85,11 @@ def gen_pdf(
     config = pdfkit.configuration(wkhtmltopdf=path_to_wkhtmltopdf)
 
     for index, row in data.iterrows():
-        html = edit_html(
-            './Form_Templates/CHW_PAGE_TEMPLATE.html',
-            row['CHW Name/Code'],
-            'Name_of_CHW'
+        html = insert_indicators(
+            row
         )
-        html = edit_html(
-            html,
-            row['CHW'],
-            'CHW_ID'
-        )
+
+        #print(html)
 
         pdfkit.from_string(
             html,

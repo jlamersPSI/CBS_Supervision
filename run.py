@@ -118,7 +118,8 @@ If you have an issues with this current Report please fill out a feedback form a
 """
 
 # Open PdfPages
-with PdfPages('./Output/Front_page.pdf') as pdf:
+# is important so that it appears first
+with PdfPages('./Output/A_Front_page.pdf') as pdf:
     # Create a matplotlib figure with a 2x2 grid (2 plots on top, 1 table on bottom)
     fig, axs = plt.subplots(2, 2, figsize=(8.27, 11.69), gridspec_kw={'height_ratios': [0.5, 1]})
 
@@ -134,7 +135,7 @@ with PdfPages('./Output/Front_page.pdf') as pdf:
     df_chc_RR = df_chc_RR.sort_index()
     df_chc_OTRR = df_chc_OTRR.sort_index()
 
-    print(df_chc_RR.head())
+    #print(df_chc_RR.head())
 
     df_chc_RR["Value"].plot(ax=axs[0, 0], label='Reporting Rate')
     df_chc_OTRR["Value"].plot(ax=axs[0, 0], label='On Time Reporting Rate')
